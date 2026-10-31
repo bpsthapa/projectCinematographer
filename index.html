@@ -118,10 +118,17 @@
     <section class="films" id="films">
       <div class="films__head">
         <h2 class="h2 split">Films</h2>
-        <p>Selected feature work.</p>
+        <p class="films__count"><i></i><span>Selected feature work</span></p>
       </div>
-      <ul class="films__list"></ul>
-      <div class="films__preview" aria-hidden="true"><img alt=""></div>
+      <div class="films__body">
+        <ol class="films__list"></ol>
+        <!-- Sticky "monitor" showing the poster of the active film -->
+        <aside class="monitor" aria-hidden="true">
+          <div class="monitor__bar"><span class="monitor__label"><i></i>Monitor</span><span class="monitor__index"></span></div>
+          <div class="monitor__screen"></div>
+          <div class="monitor__foot"><span class="monitor__badge"></span><span class="monitor__title"></span></div>
+        </aside>
+      </div>
     </section>
 
     <!-- GALLERY -->

@@ -39,7 +39,9 @@ window.SITE = {
   ],
 
   // `poster` can be a local file or a URL. If it fails to load,
-  // the row falls back to a typographic card.
+  // the monitor falls back to a typographic card.
+  // Optional `tags: ["Director of photography", "Drama"]` adds chips
+  // to the card (the year is shown as the first chip automatically).
   films: [
     { title: "Hookah", note: "Feature film, directed by Shambhu Thapa", year: "2077 BS", poster: "assets/images/slate-hookah-sm.jpg" },
     { title: "Bhasme Don", note: "Feature film", year: "", poster: "https://neftanepal.org.np/wp-content/uploads/2024/02/bhasme_don.jpg" },

@@ -6,6 +6,6 @@
   .strip__track { animation: none; }
   .split .word > span, .hero__name .char { transform: none; }
   .reveal-up img { clip-path: none; }
-  .award, .contact__title span { opacity: 1; transform: none; }
+  .film, .award, .contact__title span { opacity: 1; transform: none; }
   .quote .w { color: var(--bone); }
 }

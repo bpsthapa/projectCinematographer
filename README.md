@@ -46,7 +46,7 @@ Everything editable lives in `js/data/site.js`:
 - `contact` — add email, phone, WhatsApp, Facebook, Instagram. Empty fields stay hidden.
 - `gallery` — to add a photo, put it in `assets/images/` and add one line.
   A smaller `-sm.jpg` thumbnail (about 720px) is optional but makes the page faster.
-- `films` — titles, notes, years and poster images.
+- `films` — titles, notes, years, poster images and optional `tags` (chips on each card).
 - `awards`, `quotes`, `path`, `hero` slides.
 
 ## Change the look

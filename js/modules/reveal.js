@@ -11,10 +11,10 @@
       }).join(" ");
     });
 
-    // Run after the content modules so generated .reveal-up / .award items are observed
+    // Run after the content modules so generated .reveal-up / .film / .award items are observed
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); } });
     }, { threshold: 0.18, rootMargin: "0px 0px -6% 0px" });
-    App.$$(".split, .reveal-clip, .reveal-up, .award, .contact").forEach(function (n) { io.observe(n); });
+    App.$$(".split, .reveal-clip, .reveal-up, .film, .award, .contact").forEach(function (n) { io.observe(n); });
   };
 })(window.App);
