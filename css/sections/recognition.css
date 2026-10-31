@@ -1,20 +1,64 @@
-/* ---------- Recognition ---------- */
+/* ---------- Recognition: scroll-drawn timeline ----------
+   --p (0..1, set in recognition.js) is how far the line is drawn; a spark rides its tip.
+   An award gets .is-in when the spark passes its dot, then animates its parts in order:
+   dot pop + flash ring, connector, year (slate slide), title (focus pull), text. */
 .recognition { padding: clamp(5rem, 12vw, 10rem) var(--pad); }
 .timeline { position: relative; max-width: 980px; margin-inline: auto; }
 .timeline__line { position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: var(--graphite-3); }
-.timeline__line i { position: absolute; inset: 0; background: var(--tungsten); transform-origin: top; transform: scaleY(0); }
+.timeline__line i { position: absolute; top: 0; bottom: 0; left: -.5px; width: 2px; background: var(--tungsten); box-shadow: 0 0 12px rgba(233, 162, 59, .6); transform-origin: top; transform: scaleY(var(--p, 0)); }
+.timeline__line b {
+  position: absolute; left: 50%; top: calc(var(--p, 0) * 100%); width: 11px; height: 11px; margin: -5.5px 0 0 -5.5px; border-radius: 50%;
+  background: var(--bone); box-shadow: 0 0 0 4px rgba(233, 162, 59, .25), 0 0 22px 6px rgba(233, 162, 59, .7);
+  opacity: 0; transition: opacity .4s;
+}
+.timeline.is-drawing .timeline__line b { opacity: 1; }
 .timeline__list { list-style: none; margin: 0; padding: 0; }
-.award { position: relative; width: 50%; padding: 0 3rem 3.5rem 0; text-align: right; opacity: .25; transform: translateX(-24px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
-.award:nth-child(even) { margin-left: 50%; padding: 0 0 3.5rem 3rem; text-align: left; transform: translateX(24px); }
-.award.is-in { opacity: 1; transform: none; }
-.award::after { content: ""; position: absolute; top: .55rem; right: -7px; width: 13px; height: 13px; border-radius: 50%; background: var(--graphite); border: 2px solid var(--smoke); transition: background .5s, border-color .5s; }
-.award:nth-child(even)::after { right: auto; left: -6px; }
-.award.is-in::after { background: var(--tungsten); border-color: var(--tungsten); }
-.award__year { font-family: var(--display); font-weight: 800; font-size: 1.1rem; color: var(--tungsten); letter-spacing: .04em; }
-.award h3 { margin: .2rem 0 .3rem; font-family: var(--display); font-weight: 800; font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.3rem); line-height: 1.05; }
-.award p { margin: 0; color: var(--smoke); }
+
+/* Award (odd = left of the line, even = right) */
+.award { --dir: -1; position: relative; width: 50%; padding: 0 3rem 3.5rem 0; text-align: right; opacity: .28; transition: opacity .8s var(--ease); }
+.award:nth-child(even) { --dir: 1; margin-left: 50%; padding: 0 0 3.5rem 3rem; text-align: left; }
+.award.is-in { opacity: 1; }
+
+/* Dot on the line: pops and flashes when reached */
+.award__dot { position: absolute; top: .55rem; right: -7px; width: 13px; height: 13px; border-radius: 50%; background: var(--graphite); border: 2px solid var(--smoke); transition: background .4s, border-color .4s; }
+.award:nth-child(even) .award__dot { right: auto; left: -6px; }
+.award__dot::after { content: ""; position: absolute; inset: -2px; border-radius: 50%; border: 2px solid var(--tungsten); opacity: 0; }
+.award.is-in .award__dot { background: var(--tungsten); border-color: var(--tungsten); animation: award-pop .6s var(--ease); }
+.award.is-in .award__dot::after { animation: award-flash .9s ease-out .05s; }
+@keyframes award-pop { 0% { transform: scale(.4); } 55% { transform: scale(1.45); } 100% { transform: scale(1); } }
+@keyframes award-flash { 0% { opacity: .9; transform: scale(1); } 100% { opacity: 0; transform: scale(3.6); } }
+
+/* Connector from the dot toward the text */
+.award__tick { position: absolute; top: calc(.55rem + 6px); right: 12px; width: calc(3rem - 24px); height: 1px; background: var(--tungsten); transform: scaleX(0); transform-origin: right; transition: transform .6s var(--ease) .1s; }
+.award:nth-child(even) .award__tick { right: auto; left: 12px; transform-origin: left; }
+.award.is-in .award__tick { transform: scaleX(1); }
+
+/* Year: slides up from behind a mask, like a slate */
+.award__year { display: block; overflow: hidden; font-family: var(--display); font-weight: 800; font-size: 1.1rem; color: var(--tungsten); letter-spacing: .04em; }
+.award__year span { display: inline-block; transform: translateY(110%); transition: transform .7s var(--ease) .2s; }
+.award.is-in .award__year span { transform: none; }
+
+/* Title: focus pull while sliding in from its side; underline sweeps under each line on hover */
+.award h3 {
+  margin: .2rem 0 .3rem; font-family: var(--display); font-weight: 800; font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.3rem); line-height: 1.12;
+  filter: blur(8px); transform: translateX(calc(var(--dir) * -34px));
+  transition: filter 1s var(--ease) .28s, transform 1s var(--ease) .28s;
+}
+.award h3 span {
+  background: linear-gradient(var(--tungsten), var(--tungsten)) no-repeat 100% 100% / 0% 2px;
+  -webkit-box-decoration-break: clone; box-decoration-break: clone; transition: background-size .5s var(--ease);
+}
+.award:nth-child(even) h3 span { background-position: 0 100%; }
+.award.is-in h3 { filter: none; transform: none; }
+.award:hover h3 span { background-size: 100% 2px; }
+
+.award p { margin: 0; color: var(--smoke); opacity: 0; transform: translateY(10px); transition: opacity .8s var(--ease) .45s, transform .8s var(--ease) .45s; }
+.award.is-in p { opacity: 1; transform: none; }
+
 @media (max-width: 720px) {
   .timeline__line { left: 6px; }
-  .award, .award:nth-child(even) { width: auto; margin-left: 0; padding: 0 0 2.6rem 2.4rem; text-align: left; transform: translateY(16px); }
-  .award::after, .award:nth-child(even)::after { left: 0; right: auto; }
+  .award, .award:nth-child(even) { --dir: 1; width: auto; margin-left: 0; padding: 0 0 2.6rem 2.4rem; text-align: left; }
+  .award__dot, .award:nth-child(even) .award__dot { left: 0; right: auto; }
+  .award__tick, .award:nth-child(even) .award__tick { left: 18px; right: auto; width: calc(2.4rem - 26px); transform-origin: left; }
+  .award h3 span { background-position: 0 100%; }
 }

@@ -10,11 +10,11 @@ window.SITE = {
 
   // Fill these in before deploying. Empty values are hidden on the page.
   contact: {
-    email: "",        // e.g. "name@example.com"
+    email: "krishbt44@gmail.com",
     phone: "+977 9846126401",
-    whatsapp: "9779846126401",   // digits only with country code
+    whatsapp: "+9779846126401",   // digits only with country code
     facebook: "https://www.facebook.com/krishnathapa12345",
-    instagram: ""     // full profile URL
+    instagram: "https://www.instagram.com/krishna.bdr.thapa/"
   },
 
   // Hero "viewfinder" slides (landscape images work best)

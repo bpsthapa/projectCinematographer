@@ -10,5 +10,8 @@
   .about__photo::after { display: none; }
   .reveal-focus, .path li { opacity: 1; filter: none; transform: none; }
   .film, .award, .contact__title span { opacity: 1; transform: none; }
+  .award h3, .award p, .award__year span { opacity: 1; filter: none; transform: none; }
+  .award__tick { transform: scaleX(1); }
+  .timeline__line b { display: none; }
   .quote .w { color: var(--bone); }
 }
