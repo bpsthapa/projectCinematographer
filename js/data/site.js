@@ -38,15 +38,17 @@ window.SITE = {
     { title: "Cinematographer", text: "Shaping the look and the light of the story." }
   ],
 
-  // `poster` can be a local file or a URL. If it fails to load,
-  // the monitor falls back to a typographic card.
+  // Film posters live in assets/images/films/ (a URL also works).
+  // If a poster fails to load, the monitor falls back to a typographic card.
   // Optional `tags: ["Director of photography", "Drama"]` adds chips
   // to the card (the year is shown as the first chip automatically).
   films: [
-    { title: "Hookah", note: "Feature film, directed by Shambhu Thapa", year: "2077 BS", poster: "assets/images/slate-hookah-sm.jpg" },
-    { title: "Bhasme Don", note: "Feature film", year: "", poster: "https://neftanepal.org.np/wp-content/uploads/2024/02/bhasme_don.jpg" },
-    { title: "Chiso Manchhe", note: "Feature film", year: "", poster: "https://neftanepal.org.np/wp-content/uploads/2024/02/chiso_manchhe.jpeg" },
-    { title: "Ghamad Shere", note: "Feature film", year: "", poster: "https://neftanepal.org.np/wp-content/uploads/2024/02/ghamad-shere.jpeg" }
+    { title: "Hookah", note: "Feature film, directed by Shambhu Thapa", year: "2077 BS", poster: "assets/images/films/hookah.jpg" },
+    { title: "Bhasme Don", note: "Feature film", year: "", poster: "assets/images/films/bhasme-don.jpg" },
+    { title: "Ke Ghar Ke Dera", note: "Feature film, directed by Dipendra K. Khanal", year: "", poster: "assets/images/films/ke-ghar-ke-dera.jpg" },
+    { title: "Chiso Manchhe", note: "Feature film", year: "", poster: "assets/images/films/chiso-manchhe.jpg" },
+    { title: "Parastri", note: "Feature film, directed by Suraj Pandey", year: "", poster: "assets/images/films/parastri.jpg" },
+    { title: "Ghamad Shere", note: "Feature film", year: "", poster: "assets/images/films/ghamad-shere.jpg" }
   ],
 
   gallery: [

@@ -22,6 +22,7 @@ index.html                 page markup (section shells; content is filled in by 
 assets/
   icons/favicon.svg
   images/                  photos: name.jpg (full) + name-sm.jpg (~720px thumbnail)
+    films/                 film posters (one per film in `films`)
 css/
   main.css                 entry file: imports everything below, in order
   base/
@@ -47,6 +48,7 @@ Everything editable lives in `js/data/site.js`:
 - `gallery` — to add a photo, put it in `assets/images/` and add one line.
   A smaller `-sm.jpg` thumbnail (about 720px) is optional but makes the page faster.
 - `films` — titles, notes, years, poster images and optional `tags` (chips on each card).
+  Put posters in `assets/images/films/`.
 - `awards`, `quotes`, `path`, `hero` slides.
 
 ## Change the look
