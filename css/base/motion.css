@@ -5,7 +5,8 @@
   .grain { display: none; }
   .strip__track { animation: none; }
   .split .word > span, .hero__name .char { transform: none; }
-  .reveal-up img { clip-path: none; }
+  .reveal-up img { clip-path: none; filter: none; }
+  .shot::after { display: none; }
   .about__photo { clip-path: none; transform: none; }
   .about__photo::after { display: none; }
   .reveal-focus, .path li { opacity: 1; filter: none; transform: none; }

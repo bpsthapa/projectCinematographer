@@ -1,7 +1,8 @@
-/* Gallery grid + lightbox (keyboard, swipe, focus trap) */
+/* Gallery grid (darkroom reveal, hover tilt + viewfinder) + lightbox (keyboard, swipe, focus trap) */
 (function (App) {
   "use strict";
   var $ = App.$, $$ = App.$$, esc = App.esc;
+  function pad2(n) { return n < 10 ? "0" + n : "" + n; }
 
   App.modules.gallery = function () {
     var items = App.data.gallery || [];
@@ -10,8 +11,20 @@
       var b = App.el("button", "shot reveal-up");
       b.type = "button"; b.dataset.index = i; b.dataset.cursor = "View";
       b.setAttribute("aria-label", "Open photo: " + g.caption);
-      b.innerHTML = '<img src="' + esc(g.thumb || g.src) + '" alt="' + esc(g.caption) + '" loading="lazy"><span class="shot__cap">' + esc(g.caption) + "</span>";
+      b.style.setProperty("--d", (i % 3) * 0.12 + "s"); // cascade across the columns
+      b.innerHTML = '<img src="' + esc(g.thumb || g.src) + '" alt="' + esc(g.caption) + '" loading="lazy">' +
+        '<span class="shot__frame" aria-hidden="true"><i></i><i></i><i></i><i></i></span>' +
+        '<span class="shot__no" aria-hidden="true">' + pad2(i + 1) + " / " + pad2(items.length) + "</span>" +
+        '<span class="shot__cap">' + esc(g.caption) + "</span>";
       b.addEventListener("click", function () { openBox(i); });
+      if (App.finePointer && !App.reduce) {
+        b.addEventListener("mousemove", function (e) {
+          var r = b.getBoundingClientRect();
+          b.style.setProperty("--ry", (((e.clientX - r.left) / r.width - 0.5) * 10).toFixed(2) + "deg");
+          b.style.setProperty("--rx", (((e.clientY - r.top) / r.height - 0.5) * -10).toFixed(2) + "deg");
+        });
+        b.addEventListener("mouseleave", function () { b.style.setProperty("--rx", "0deg"); b.style.setProperty("--ry", "0deg"); });
+      }
       grid.appendChild(b);
     });
 
