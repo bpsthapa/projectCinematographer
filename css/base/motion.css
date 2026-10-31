@@ -1,0 +1,11 @@
+/* ---------- Reduced motion overrides (keep last) ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; transition-delay: 0s !important; }
+  html { scroll-behavior: auto; }
+  .grain { display: none; }
+  .strip__track { animation: none; }
+  .split .word > span, .hero__name .char { transform: none; }
+  .reveal-up img { clip-path: none; }
+  .award, .contact__title span { opacity: 1; transform: none; }
+  .quote .w { color: var(--bone); }
+}

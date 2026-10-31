@@ -1,0 +1,11 @@
+/* ---------- Contact ---------- */
+.contact { min-height: 80vh; display: grid; align-content: center; justify-items: center; text-align: center; padding: clamp(5rem, 12vw, 10rem) var(--pad); position: relative; overflow: hidden; }
+.contact::before { content: ""; position: absolute; width: 70vmax; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, rgba(233,162,59,.22), transparent 62%); top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; animation: breathe 6s ease-in-out infinite; }
+@keyframes breathe { 50% { transform: translate(-50%, -50%) scale(1.12); opacity: .7; } }
+.contact__kicker { margin: 0 0 1rem; color: var(--smoke); font-size: 1.2rem; position: relative; }
+.contact__title { position: relative; margin: 0; font-family: var(--display); font-weight: 900; font-size: clamp(3.6rem, 1rem + 12vw, 12rem); line-height: .85; }
+.contact__title span { display: inline-block; transform: translateY(40%) rotate(4deg); opacity: 0; transition: transform 1s var(--ease), opacity 1s; }
+.contact__title span:nth-child(2) { transition-delay: .12s; }
+.contact__title span:nth-child(3) { transition-delay: .24s; color: var(--tungsten); }
+.contact.is-in .contact__title span { transform: none; opacity: 1; }
+.contact__links { position: relative; display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-top: 3rem; }

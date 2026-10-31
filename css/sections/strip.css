@@ -1,0 +1,14 @@
+/* ---------- Film strip marquee ---------- */
+.strip { padding: 1.4rem 0; background: #0f0d0b; overflow: hidden; position: relative; transform: rotate(-2deg) scale(1.04); margin: 3rem 0; }
+.strip::before, .strip::after {
+  content: ""; position: absolute; left: 0; right: 0; height: 1.4rem; z-index: 1;
+  background: radial-gradient(circle at center, var(--graphite) 0 4px, transparent 5px) 0 50% / 26px 14px repeat-x,
+              #0f0d0b;
+}
+.strip::before { top: 0; }
+.strip::after { bottom: 0; }
+.strip__track { display: flex; gap: .8rem; width: max-content; animation: marquee 60s linear infinite; }
+.strip:hover .strip__track { animation-play-state: paused; }
+.strip__track img { height: clamp(150px, 22vw, 260px); width: auto; filter: grayscale(1) contrast(1.05); transition: filter .5s; }
+.strip__track img:hover { filter: none; }
+@keyframes marquee { to { transform: translateX(-50%); } }

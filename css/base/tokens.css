@@ -1,0 +1,19 @@
+/* ---------- Design tokens: colours, fonts, spacing, easing ---------- */
+:root {
+  --graphite: #1A1714;
+  --graphite-2: #241F1A;
+  --graphite-3: #2F2922;
+  --bone: #EDE6D8;
+  --smoke: #A39889;
+  --tungsten: #E9A23B;
+  --rec: #D2342A;
+
+  --display: "Big Shoulders Display", "Oswald", "Arial Narrow", Impact, sans-serif;
+  --text: "Newsreader", Georgia, "Times New Roman", serif;
+
+  --pad: clamp(1.25rem, 5vw, 5rem);
+  --ease: cubic-bezier(.22, .8, .2, 1);
+  --ease-io: cubic-bezier(.7, 0, .2, 1);
+  color-scheme: dark;
+  box-sizing: border-box;
+}

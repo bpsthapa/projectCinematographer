@@ -1,0 +1,4 @@
+/* ---------- Footer ---------- */
+.footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem 2rem; padding: 2rem var(--pad) calc(env(safe-area-inset-bottom, 0px) + 2rem); border-top: 1px solid var(--graphite-3); color: var(--smoke); font-size: .95rem; }
+.footer p { margin: 0; }
+.footer a { color: var(--bone); text-decoration-color: var(--tungsten); text-underline-offset: 3px; }

@@ -1,0 +1,13 @@
+/* ---------- Custom cursor ---------- */
+.cursor {
+  position: fixed; top: 0; left: 0; z-index: 95; pointer-events: none;
+  width: 34px; height: 34px; margin: -17px 0 0 -17px; border: 1px solid var(--bone); border-radius: 50%;
+  display: grid; place-items: center; opacity: 0;
+  transition: width .35s var(--ease), height .35s var(--ease), margin .35s var(--ease), background .35s, border-color .35s, opacity .3s;
+  mix-blend-mode: difference;
+}
+.cursor.is-on { opacity: 1; }
+.cursor.is-big { width: 96px; height: 96px; margin: -48px 0 0 -48px; background: var(--bone); border-color: var(--bone); }
+.cursor__label { font-family: var(--display); font-weight: 800; font-size: 1rem; color: var(--graphite); opacity: 0; transition: opacity .2s; }
+.cursor.is-big .cursor__label { opacity: 1; }
+@media (hover: none), (pointer: coarse) { .cursor { display: none; } }

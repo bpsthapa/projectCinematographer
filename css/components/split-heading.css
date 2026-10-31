@@ -1,0 +1,4 @@
+/* ---------- Split heading reveal ---------- */
+.split .word { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .06em; }
+.split .word > span { display: inline-block; transform: translateY(105%); transition: transform 1s var(--ease); }
+.split.is-in .word > span { transform: none; }

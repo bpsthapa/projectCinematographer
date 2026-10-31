@@ -1,0 +1,9 @@
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; gap: .6rem; padding: 1rem 1.8rem; border-radius: 999px;
+  border: 1px solid var(--bone); text-decoration: none; font-family: var(--display); font-weight: 800; font-size: 1.25rem;
+  transition: background .3s, color .3s, border-color .3s, transform .3s var(--ease);
+}
+.btn--primary { background: var(--tungsten); border-color: var(--tungsten); color: var(--graphite); }
+.btn:hover { background: var(--bone); border-color: var(--bone); color: var(--graphite); }
+.btn svg { flex: none; width: 1.1em; height: 1.1em; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }

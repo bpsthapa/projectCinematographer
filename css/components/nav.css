@@ -1,0 +1,35 @@
+/* ---------- Nav ---------- */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 70;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: calc(env(safe-area-inset-top, 0px) + 1.1rem) var(--pad) 1.1rem;
+  transition: background .4s, padding .4s, transform .5s var(--ease);
+}
+.nav.is-solid { background: rgba(26, 23, 20, .88); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); padding-block: calc(env(safe-area-inset-top, 0px) + .7rem) .7rem; }
+.nav.is-hidden { transform: translateY(-100%); }
+.nav__mark { display: flex; align-items: center; gap: .6rem; text-decoration: none; font-family: var(--display); font-weight: 800; font-size: 1.35rem; letter-spacing: .02em; }
+.nav__mark svg { width: 30px; height: 30px; fill: none; stroke: var(--tungsten); stroke-width: 2.5; stroke-linecap: round; transition: transform .8s var(--ease); }
+.nav__mark:hover svg { transform: rotate(120deg); }
+.nav__menu { display: flex; gap: 2rem; align-items: center; }
+.nav__menu a { position: relative; text-decoration: none; font-family: var(--display); font-weight: 600; font-size: 1.15rem; letter-spacing: .02em; }
+.nav__menu a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -3px; height: 2px; background: var(--tungsten); transform: scaleX(0); transform-origin: right; transition: transform .4s var(--ease); }
+.nav__menu a:hover::after, .nav__menu a.is-active::after { transform: scaleX(1); transform-origin: left; }
+.nav__cta { border: 1px solid var(--bone); padding: .35rem 1rem; border-radius: 999px; transition: background .3s, color .3s; }
+.nav__cta::after { display: none; }
+.nav__cta:hover { background: var(--bone); color: var(--graphite); }
+.nav__toggle { display: none; }
+
+@media (max-width: 820px) {
+  .nav__toggle { display: grid; gap: 7px; width: 44px; height: 44px; place-content: center; background: none; border: 0; cursor: pointer; z-index: 2; }
+  .nav__toggle span:not(.sr-only) { display: block; width: 26px; height: 2px; background: var(--bone); transition: transform .4s var(--ease); }
+  .nav__toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(4.5px) rotate(45deg); }
+  .nav__toggle[aria-expanded="true"] span:nth-child(2) { transform: translateY(-4.5px) rotate(-45deg); }
+  .nav__menu {
+    position: fixed; inset: 0; flex-direction: column; justify-content: center; gap: 1.4rem;
+    background: var(--graphite); clip-path: circle(0 at calc(100% - 2.6rem) 2.6rem);
+    transition: clip-path .8s var(--ease-io);
+  }
+  .nav__menu.is-open { clip-path: circle(150% at calc(100% - 2.6rem) 2.6rem); }
+  .nav__menu a { font-size: 2.6rem; font-weight: 800; }
+  .nav__cta { border: 0; padding: 0; }
+}

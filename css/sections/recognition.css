@@ -1,0 +1,20 @@
+/* ---------- Recognition ---------- */
+.recognition { padding: clamp(5rem, 12vw, 10rem) var(--pad); }
+.timeline { position: relative; max-width: 980px; margin-inline: auto; }
+.timeline__line { position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: var(--graphite-3); }
+.timeline__line i { position: absolute; inset: 0; background: var(--tungsten); transform-origin: top; transform: scaleY(0); }
+.timeline__list { list-style: none; margin: 0; padding: 0; }
+.award { position: relative; width: 50%; padding: 0 3rem 3.5rem 0; text-align: right; opacity: .25; transform: translateX(-24px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+.award:nth-child(even) { margin-left: 50%; padding: 0 0 3.5rem 3rem; text-align: left; transform: translateX(24px); }
+.award.is-in { opacity: 1; transform: none; }
+.award::after { content: ""; position: absolute; top: .55rem; right: -7px; width: 13px; height: 13px; border-radius: 50%; background: var(--graphite); border: 2px solid var(--smoke); transition: background .5s, border-color .5s; }
+.award:nth-child(even)::after { right: auto; left: -6px; }
+.award.is-in::after { background: var(--tungsten); border-color: var(--tungsten); }
+.award__year { font-family: var(--display); font-weight: 800; font-size: 1.1rem; color: var(--tungsten); letter-spacing: .04em; }
+.award h3 { margin: .2rem 0 .3rem; font-family: var(--display); font-weight: 800; font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.3rem); line-height: 1.05; }
+.award p { margin: 0; color: var(--smoke); }
+@media (max-width: 720px) {
+  .timeline__line { left: 6px; }
+  .award, .award:nth-child(even) { width: auto; margin-left: 0; padding: 0 0 2.6rem 2.4rem; text-align: left; transform: translateY(16px); }
+  .award::after, .award:nth-child(even)::after { left: 0; right: auto; }
+}

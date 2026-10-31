@@ -1,0 +1,31 @@
+/* ==========================================================
+   Krishna Bahadur Thapa — portfolio
+   Palette: graphite darkroom + tungsten (3200K) + safelight red
+   Type: Big Shoulders Display (titles) / Newsreader (text)
+
+   Entry stylesheet. Order matters:
+   base -> components -> sections -> motion (overrides last).
+   New section? Add css/sections/<name>.css and import it below.
+   ========================================================== */
+@import url("base/tokens.css");
+@import url("base/base.css");
+
+@import url("components/loader.css");
+@import url("components/film-effects.css");
+@import url("components/cursor.css");
+@import url("components/nav.css");
+@import url("components/button.css");
+@import url("components/split-heading.css");
+@import url("components/lightbox.css");
+
+@import url("sections/hero.css");
+@import url("sections/about.css");
+@import url("sections/quotes.css");
+@import url("sections/strip.css");
+@import url("sections/films.css");
+@import url("sections/gallery.css");
+@import url("sections/recognition.css");
+@import url("sections/contact.css");
+@import url("sections/footer.css");
+
+@import url("base/motion.css");

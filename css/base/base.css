@@ -1,0 +1,29 @@
+/* ---------- Reset, base elements, shared heading style ---------- */
+*, *::before, *::after { box-sizing: inherit; }
+html { scroll-behavior: smooth; scroll-padding-top: 4rem; }
+body {
+  margin: 0;
+  background: var(--graphite);
+  color: var(--bone);
+  font-family: var(--text);
+  font-size: clamp(1.05rem, .98rem + .3vw, 1.2rem);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+body.is-loading { overflow: hidden; }
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+::selection { background: var(--tungsten); color: var(--graphite); }
+:focus-visible { outline: 2px solid var(--tungsten); outline-offset: 4px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.h2 {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(2.6rem, 1.6rem + 5vw, 6.5rem);
+  line-height: .9;
+  letter-spacing: -.01em;
+  margin: 0 0 2rem;
+  text-wrap: balance;
+}

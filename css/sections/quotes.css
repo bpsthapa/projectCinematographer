@@ -1,0 +1,7 @@
+/* ---------- Quotes (scroll-lit words) ---------- */
+.quotes { padding: clamp(4rem, 10vw, 8rem) var(--pad); display: grid; gap: clamp(4rem, 10vw, 8rem); background: var(--graphite-2); }
+.quote { margin: 0; max-width: 18ch; font-family: var(--display); font-weight: 800; font-size: clamp(2.4rem, 1.4rem + 5vw, 6.2rem); line-height: .95; letter-spacing: -.01em; }
+.quote:nth-child(2) { justify-self: end; text-align: right; }
+.quote .w { color: rgba(237,230,216,.14); transition: color .5s; }
+.quote .w.is-lit { color: var(--bone); }
+.quote .w.is-lit:last-child { color: var(--tungsten); }
