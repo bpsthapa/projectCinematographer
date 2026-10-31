@@ -1,18 +1,78 @@
 /* ---------- About ---------- */
 .about { display: grid; grid-template-columns: 5fr 6fr; gap: clamp(2rem, 6vw, 6rem); align-items: start; padding: clamp(5rem, 12vw, 10rem) var(--pad); }
-.about__photo { margin: 0; position: sticky; top: 6rem; aspect-ratio: 4 / 5; overflow: hidden; }
-.about__photo img { width: 100%; height: 100%; object-fit: cover; object-position: 62% center; transform: scale(1.25); transition: transform 1.6s var(--ease); }
+/* Photo: iris reveal, scroll parallax (--py), hover tilt (--rx/--ry) + viewfinder, light-leak sweep */
+.about__photo {
+  margin: 0; position: sticky; top: 6rem; aspect-ratio: 4 / 5; overflow: hidden;
+  clip-path: circle(0% at 50% 50%);
+  transform: perspective(1100px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: clip-path 1.6s var(--ease-io), transform .6s var(--ease);
+}
+.about__photo.is-in { clip-path: circle(75% at 50% 50%); }
+.about__photo img {
+  position: absolute; left: 0; top: -8%; width: 100%; height: 116%;
+  object-fit: cover; object-position: 62% center;
+  translate: 0 var(--py, 0%); transform: scale(1.25); filter: saturate(.92);
+  transition: transform 1.6s var(--ease), filter .6s;
+}
 .about__photo.is-in img { transform: scale(1); }
+.about__photo:hover img { transform: scale(1.04); filter: saturate(1.15) contrast(1.04); }
+
+/* Tungsten light leak drifting across the frame */
+.about__photo::after {
+  content: ""; position: absolute; inset: -20%; pointer-events: none; mix-blend-mode: screen;
+  background: linear-gradient(105deg, transparent 35%, rgba(233, 162, 59, .38) 48%, rgba(210, 52, 42, .18) 54%, transparent 66%);
+  transform: translateX(-70%); animation: about-leak 9s var(--ease-io) 2s infinite;
+}
+@keyframes about-leak { 0% { transform: translateX(-70%); } 40%, 100% { transform: translateX(70%); } }
+
+/* Viewfinder overlay */
+.about__vf { position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: 0; transition: opacity .5s; font-family: var(--display); font-weight: 600; font-size: .9rem; letter-spacing: .1em; color: var(--bone); text-shadow: 0 1px 6px rgba(0, 0, 0, .6); }
+.about__photo:hover .about__vf { opacity: 1; }
+.about__corner { position: absolute; width: 34px; height: 34px; border: 0 solid var(--bone); transition: transform .7s var(--ease); }
+.about__corner--tl { top: 16px; left: 16px; border-top-width: 2px; border-left-width: 2px; transform: translate(-14px, -14px); }
+.about__corner--tr { top: 16px; right: 16px; border-top-width: 2px; border-right-width: 2px; transform: translate(14px, -14px); }
+.about__corner--bl { bottom: 16px; left: 16px; border-bottom-width: 2px; border-left-width: 2px; transform: translate(-14px, 14px); }
+.about__corner--br { bottom: 16px; right: 16px; border-bottom-width: 2px; border-right-width: 2px; transform: translate(14px, 14px); }
+.about__photo:hover .about__corner { transform: none; }
+.about__cross { position: absolute; top: 50%; left: 50%; width: 30px; height: 30px; transform: translate(-50%, -50%) scale(.4) rotate(45deg); opacity: .8; transition: transform .7s var(--ease); }
+.about__cross::before, .about__cross::after { content: ""; position: absolute; background: var(--bone); }
+.about__cross::before { left: 50%; top: 0; bottom: 0; width: 1px; }
+.about__cross::after { top: 50%; left: 0; right: 0; height: 1px; }
+.about__photo:hover .about__cross { transform: translate(-50%, -50%); }
+.about__tag { position: absolute; transform: translateY(8px); opacity: 0; transition: transform .6s var(--ease) .15s, opacity .6s .15s; }
+.about__photo:hover .about__tag { transform: none; opacity: 1; }
+.about__tag--rec { top: 26px; left: 62px; display: inline-flex; align-items: center; gap: .45rem; }
+.about__tag--rec i { width: 9px; height: 9px; border-radius: 50%; background: var(--rec); animation: blink 1.2s steps(2) infinite; }
+.about__tag--cam { top: 26px; right: 62px; color: var(--tungsten); }
+.about__tag--stop { bottom: 26px; left: 50%; translate: -50% 0; }
 .about__text { max-width: 62ch; padding-top: 1rem; }
 .about__text > p { margin: 0 0 1.2rem; color: rgba(237,230,216,.86); }
 .about__text > p:first-of-type { font-size: 1.25em; line-height: 1.5; color: var(--bone); }
 
-.path { list-style: none; margin: 3rem 0 0; padding: 0; counter-reset: step; }
-.path li { counter-increment: step; display: grid; grid-template-columns: 3.2rem 1fr; column-gap: 1rem; padding: 1.3rem 0; border-top: 1px solid var(--graphite-3); }
-.path li:last-child { border-bottom: 1px solid var(--graphite-3); }
-.path li::before { content: counter(step); grid-row: span 2; font-family: var(--display); font-weight: 800; font-size: 2.4rem; line-height: 1; color: var(--smoke); transition: color .4s; }
-.path li:last-child::before { color: var(--tungsten); }
-.path h3 { margin: 0; font-family: var(--display); font-weight: 800; font-size: 1.7rem; line-height: 1.1; }
+/* Career path: scroll-driven timeline.
+   --line-top / --line-h position the track between the first and last marker,
+   --fill (0..1) is how far it has been drawn; reached steps get .is-reached. */
+.path { position: relative; list-style: none; margin: 3rem 0 0; padding: 0; counter-reset: step; }
+.path::before, .path::after { content: ""; position: absolute; left: calc(1.6rem - 1px); top: var(--line-top, 0); height: var(--line-h, 0); width: 2px; }
+.path::before { background: var(--graphite-3); }
+.path::after { background: var(--tungsten); box-shadow: 0 0 12px rgba(233, 162, 59, .55); transform-origin: top; transform: scaleY(var(--fill, 0)); }
+.path li {
+  position: relative; z-index: 1; counter-increment: step;
+  display: grid; grid-template-columns: 3.2rem 1fr; column-gap: 1.2rem; padding: 1.1rem 0;
+  opacity: .3; transform: translateX(26px);
+  transition: opacity .7s var(--ease), transform .9s var(--ease);
+}
+.path li.is-reached { opacity: 1; transform: none; }
+.path li::before {
+  content: counter(step); grid-row: span 2; width: 3.2rem; height: 3.2rem; border-radius: 50%;
+  display: grid; place-items: center; background: var(--graphite); border: 1px solid var(--graphite-3);
+  font-family: var(--display); font-weight: 800; font-size: 1.5rem; line-height: 1; color: var(--smoke);
+  transition: color .5s, background .5s, border-color .5s, box-shadow .5s, transform .6s var(--ease);
+}
+.path li.is-reached::before { color: var(--graphite); background: var(--tungsten); border-color: var(--tungsten); box-shadow: 0 0 0 6px rgba(233, 162, 59, .14); transform: scale(1.06); }
+.path li:last-child.is-reached::before { animation: path-pulse 2.2s ease-out infinite; }
+@keyframes path-pulse { 0% { box-shadow: 0 0 0 0 rgba(233, 162, 59, .5); } 100% { box-shadow: 0 0 0 18px rgba(233, 162, 59, 0); } }
+.path h3 { margin: .35rem 0 0; font-family: var(--display); font-weight: 800; font-size: 1.7rem; line-height: 1.1; }
 .path p { margin: .2rem 0 0; color: var(--smoke); }
 @media (max-width: 860px) {
   .about { grid-template-columns: 1fr; }

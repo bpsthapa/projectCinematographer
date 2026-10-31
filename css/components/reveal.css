@@ -1,0 +1,6 @@
+/* ---------- Scroll reveal utilities ---------- */
+/* .reveal-focus: blurred -> sharp while rising, like a focus pull.
+   Consecutive ones are staggered automatically. */
+.reveal-focus { opacity: 0; filter: blur(10px); transform: translateY(22px); transition: opacity 1s var(--ease), filter 1.3s var(--ease), transform 1.1s var(--ease); }
+.reveal-focus.is-in { opacity: 1; filter: blur(0); transform: none; }
+.reveal-focus + .reveal-focus { transition-delay: .18s; }

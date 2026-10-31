@@ -6,6 +6,9 @@
   .strip__track { animation: none; }
   .split .word > span, .hero__name .char { transform: none; }
   .reveal-up img { clip-path: none; }
+  .about__photo { clip-path: none; transform: none; }
+  .about__photo::after { display: none; }
+  .reveal-focus, .path li { opacity: 1; filter: none; transform: none; }
   .film, .award, .contact__title span { opacity: 1; transform: none; }
   .quote .w { color: var(--bone); }
 }

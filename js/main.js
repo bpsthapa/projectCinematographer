@@ -23,6 +23,7 @@
   M.reveal();
   M.nav();
   M.cursor();
+  M.toTop();
 
   App.startScroll();
 })(window.App);

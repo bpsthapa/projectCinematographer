@@ -16,7 +16,9 @@
 @import url("components/nav.css");
 @import url("components/button.css");
 @import url("components/split-heading.css");
+@import url("components/reveal.css");
 @import url("components/lightbox.css");
+@import url("components/to-top.css");
 
 @import url("sections/hero.css");
 @import url("sections/about.css");

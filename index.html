@@ -95,13 +95,22 @@
 
     <!-- ABOUT -->
     <section class="about" id="about">
-      <figure class="about__photo reveal-clip">
+      <figure class="about__photo">
         <img src="assets/images/venice-field.jpg" alt="Krishna Bahadur Thapa looking through the viewfinder of a Sony Venice camera in a field" loading="lazy">
+        <!-- Viewfinder overlay (shown on hover) -->
+        <div class="about__vf" aria-hidden="true">
+          <span class="about__corner about__corner--tl"></span><span class="about__corner about__corner--tr"></span>
+          <span class="about__corner about__corner--bl"></span><span class="about__corner about__corner--br"></span>
+          <span class="about__cross"></span>
+          <span class="about__tag about__tag--rec"><i></i>REC</span>
+          <span class="about__tag about__tag--cam">A-CAM</span>
+          <span class="about__tag about__tag--stop">T2.8</span>
+        </div>
       </figure>
       <div class="about__text">
         <h2 class="h2 split">The camera department, from every seat.</h2>
-        <p>Krishna Bahadur Thapa has spent more than a decade behind the lens in Nepali cinema. He came up through the camera department as an assistant and a focus puller, and today works as a cinematographer and chief assistant cinematographer.</p>
-        <p>His eye for detail and his feel for the camera help shape how a story looks on screen: sharp, deliberate frames that hold the moments audiences remember.</p>
+        <p class="reveal-focus">Krishna Bahadur Thapa has spent more than a decade behind the lens in Nepali cinema. He came up through the camera department as an assistant and a focus puller, and today works as a cinematographer and chief assistant cinematographer.</p>
+        <p class="reveal-focus">His eye for detail and his feel for the camera help shape how a story looks on screen: sharp, deliberate frames that hold the moments audiences remember.</p>
         <ol class="path"></ol>
       </div>
     </section>
@@ -162,6 +171,16 @@
     <p>Member of the <a href="https://neftanepal.org.np/" target="_blank" rel="noopener">Nepal Film Technicians Association</a></p>
   </footer>
 
+  <!-- Back to top (ring = scroll progress) -->
+  <button class="to-top" type="button" aria-label="Back to top">
+    <svg class="to-top__ring" viewBox="0 0 64 64" aria-hidden="true">
+      <circle class="to-top__track" cx="32" cy="32" r="30"/>
+      <circle class="to-top__progress" cx="32" cy="32" r="30" pathLength="100"/>
+    </svg>
+    <span class="to-top__arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg></span>
+    <svg class="to-top__reel" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="1.4"/><circle cx="12" cy="6.6" r="2.1"/><circle cx="12" cy="17.4" r="2.1"/><circle cx="6.6" cy="12" r="2.1"/><circle cx="17.4" cy="12" r="2.1"/></svg>
+  </button>
+
   <!-- Lightbox -->
   <div class="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" hidden>
     <button class="lightbox__close" aria-label="Close">×</button>
@@ -189,6 +208,7 @@
   <script src="js/modules/reveal.js"></script>
   <script src="js/modules/nav.js"></script>
   <script src="js/modules/cursor.js"></script>
+  <script src="js/modules/to-top.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
