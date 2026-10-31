@@ -43,7 +43,6 @@ window.SITE = {
   // Optional `tags: ["Director of photography", "Drama"]` adds chips
   // to the card (the year is shown as the first chip automatically).
   films: [
-    { title: "Hookah", note: "Feature film, directed by Shambhu Thapa", year: "2077 BS", poster: "assets/images/films/hookah.jpg" },
     { title: "Bhasme Don", note: "Feature film", year: "", poster: "assets/images/films/bhasme-don.jpg" },
     { title: "Ke Ghar Ke Dera", note: "Feature film, directed by Dipendra K. Khanal", year: "", poster: "assets/images/films/ke-ghar-ke-dera.jpg" },
     { title: "Chiso Manchhe", note: "Feature film", year: "", poster: "assets/images/films/chiso-manchhe.jpg" },
